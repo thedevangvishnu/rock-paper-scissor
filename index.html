@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Rock Paper Scissor</title>
+    </head>
+    <body>
+        <script>
+
+            // Create a function that randomly selects choice for computer
+
+            function getComputerChoice() {
+                let array = ["rock", "paper", "scissor"];
+                let selectRandom = array[Math.floor(Math.random() * array.length)];
+                return selectRandom;
+            } 
+
+            // Create a function that takes player's choice and computer's choice and returns the winner.
+
+            function playRound(player, comp) {
+                if (player === "rock") {
+                    if (comp === "rock") {
+                        return "Tie!";
+                    } else if (comp === "paper") {
+                        return "Computer wins!";
+                    } else {
+                        return "You win!";
+                    }
+                } else if (player === "paper") {
+                    if (comp === "rock") {
+                        return "You win!";
+                    } else if (comp === "paper") {
+                        return "Tie!";
+                    } else {
+                        return "Computer wins!";
+                    }
+                } else if (player === "scissor") {
+                    if (comp === "rock") {
+                        return "Computer wins!";
+                    } else if (comp === "paper") {
+                        return "You win!";
+                    } else {
+                        return "Tie!";
+                    }
+                } else {
+                    return "Invalid input! Choose correctly.";
+                }
+            }
+
+            // Create a function to that plays five rounds, declares the winner of each round and also keeps track of their scores.
+
+            let playerScore = 0;
+            let compScore = 0;
+
+            function game() {
+                for (let i = 0; i < 5; i++) {
+                    let compChoice = getComputerChoice();
+                    console.log("CPU:", compChoice);
+            
+                    let playerChoice = prompt("Choose any one between 'rock', 'paper' or 'scissor'");
+                    playerChoice = playerChoice.toLowerCase();
+                    console.log("YOU:", playerChoice);
+
+                    let result = playRound(playerChoice, compChoice);
+                    
+                    // Print winner of each round and update scores
+                    if (result === "You win!") {
+                        console.log(`Round ${i + 1} winner: You`);
+                        playerScore++;
+                    } else if (result === "Computer wins!") {
+                        console.log(`Round ${i + 1} winner: Computer`);
+                        compScore++;
+                    } else if (result === "Tie!") {
+                        console.log(`Round ${i + 1}: Tie`);
+                    } else {
+                        console.log(result);
+                    }
+
+                }
+                console.log("Player score:", playerScore);
+                console.log("Computer score:", compScore);
+            }
+
+            game();
+            
+            // Declare winner
+            if (playerScore > compScore) {
+                console.log("Congratulations! You won the game. :)");
+            } else if (playerScore < compScore) {
+                console.log("Sorry! You lost the game. Computer won. :(");
+            } else {
+                console.log("Well played. The game tied!");
+            }
+
+            
+        </script>   
+    </body>
+</html>
